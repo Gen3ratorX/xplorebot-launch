@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XploreBot - Educational Robotics Kit | FireflyIO</title>
+    <!-- Preload critical hero section images -->
+    <link rel="preload" href="assets/robot1.png" as="image">
+    <link rel="preload" href="assets/robot2.png" as="image">
+    <link rel="preload" href="assets/fireflyio-logo.png" as="image">
+    <link rel="preload" href="assets/xplorebot-logo.png" as="image">
+    <!-- Prefetch non-critical images for features, about, and footer sections -->
+    <link rel="preload" href="assets/features-bg.jpg" as="image">
+    <link rel="preload" href="assets/educational-excellence.png" as="image">
+    <link rel="preload" href="assets/easy-assembly.png" as="image">
+    <link rel="preload" href="assets/visual-programming.png" as="image">
+    <link rel="preload" href="assets/competition-ready.png" as="image">
+    <link rel="preload" href="assets/made-in-ghana.png" as="image">
+    <link rel="preload" href="assets/complete-learning-kit.png" as="image">
+    <link rel="preload" href="assets/story-beginning.jpg" as="image">
+    <link rel="prefetch" href="assets/story-development.jpg" as="image">
+    <link rel="prefetch" href="assets/story-testing.jpg" as="image">
+    <link rel="prefetch" href="assets/story-impact.jpg" as="image">
+    <link rel="prefetch" href="assets/student.png" as="image">
+    <link rel="prefetch" href="assets/school.png" as="image">
+    <link rel="prefetch" href="assets/satisfaction.png" as="image">
+    <link rel="prefetch" href="assets/support.png" as="image">
+    <link rel="prefetch" href="assets/fireflyio-team.jpg" as="image">
+    <link rel="prefetch" href="assets/youtube.png" as="image">
+    <link rel="prefetch" href="assets/tiktok.png" as="image">
+    <link rel="prefetch" href="assets/instagram.png" as="image">
+    <link rel="prefetch" href="assets/linkedin.png" as="image">
+    <link rel="prefetch" href="assets/footer-bg.jpg" as="image">
+    <link rel="prefetch" href="assets/firefly1.png" as="image">
+    <link rel="prefetch" href="assets/firefly2.png" as="image">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+/* Loading Screen Styles */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.loading-screen.fade-out {
+    opacity: 0;
+    transform: scale(1.1);
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.loading-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.loading-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+.loading-divider {
+    color: #F15F25;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.loading-text h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #F15F25, #ff8c69, #F15F25);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 2s ease-in-out infinite;
+}
+
+.loading-text p {
+    color: #cccccc;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    animation: fadeInOut 2s ease-in-out infinite;
+}
+
+.loading-animation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.robot-loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(241, 95, 37, 0.3);
+    border-top: 4px solid #F15F25;
+    border-radius: 50%;
+    animation: robotSpin 1.5s linear infinite;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #F15F25, #ff8c69);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Loading Animations */
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+@keyframes robotSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes progressLoad {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Hide main content initially */
+body.loading {
+    overflow: hidden;
+}
+
+body.loading nav,
+body.loading .hero,
+body.loading .features,
+body.loading .about,
+body.loading .form-section,
+body.loading footer {
+    visibility: hidden;
+}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #000000;
+            overflow-x: hidden;
+            background: #FFFFFF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85); /* Subtle glass background */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1000;
+  transition: all 0.4s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+nav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.85;
+}
+
+.logo-img {
+  height: 34px;
+  object-fit: contain;
+}
+
+.logo-divider {
+  color: #F15F25;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.3rem 0;
+}
+
+.nav-links a:hover {
+  color: #F15F25;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #F15F25;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Mobile nav (hamburger ready) */
+@media (max-width: 768px) {
+  .nav-links-container {
+    display: none;
+  }
+}
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, #f5f7fa 0%, rgba(241, 95, 37, 0.08) 50%, #ffffff 100%);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            padding: 7rem 0 2rem;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #1a1a1a, #F15F25);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInUp 1s ease-out;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+        }
+
+        .hero-text .highlight {
+            color: #F15F25;
+            position: relative;
+        }
+
+        .hero-text .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #F15F25, #d44f1f);
+            animation: underlineExpand 1s ease-out 0.5s both;
+        }
+
+        @keyframes underlineExpand {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .hero-text p {
+            font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+            margin-bottom: 2.5rem;
+            color: #444;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #F15F25, #d44f1f);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(241, 95, 37, 0.35), 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out 0.5s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #d44f1f, #F15F25);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(241, 95, 37, 0.5), 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Robot Showcase */
+        .robot-showcase {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 550px;
+        }
+
+        .robot-container {
+            width: 100%;
+            max-width: 550px;
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .robot-display {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            border-radius: 35px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 95, 37, 0.08));
+            backdrop-filter: blur(25px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(241, 95, 37, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .robot-image {
+            width: 350px;
+            height: 350px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 35px rgba(241, 95, 37, 0.25);
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(241, 95, 37, 0.15);
+        }
+
+        .robot-image.robot1 {
+            background-image: url('assets/robot1.png');
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            z-index: 2;
+        }
+
+        .robot-image.robot2 {
+            background-image: url('assets/robot2.png');
+            opacity: 0;
+            transform: scale(0.85) rotate(-8deg);
+            z-index: 1;
+        }
+
+        .robot-container.switched .robot1 {
+            opacity: 0;
+            transform: scale(0.85) rotate(8deg);
+        }
+
+        .robot-container.switched .robot2 {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Parallax Background Elements */
+        .hero-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(241, 95, 37, 0.15), rgba(241, 95, 37, 0.05));
+            will-change: transform;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 250px;
+            height: 250px;
+            top: 15%;
+            right: 15%;
+            animation: floatCircles 18s ease-in-out infinite;
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 180px;
+            height: 180px;
+            bottom: 25%;
+            left: 15%;
+            animation: floatCircles 22s ease-in-out infinite -5s;
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            top: 65%;
+            right: 25%;
+            animation: floatCircles 25s ease-in-out infinite -10s;
+        }
+
+        @keyframes floatCircles {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(20px, -40px) rotate(180deg);
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Glowing effect */
+        .robot-display::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #F15F25, #d44f1f, #F15F25, #d44f1f);
+            border-radius: 35px;
+            z-index: -1;
+            animation: glowRotate 3.5s linear infinite;
+            opacity: 0.65;
+            filter: blur(8px);
+        }
+
+        @keyframes glowRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 3rem 0;
+            background: url('assets/features-bg.jpg') center/cover no-repeat fixed;
+            position: relative;
+            z-index: 1;
+        }
+
+        .features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, rgb(0, 0, 0), rgba(241, 95, 37, 0.1)), linear-gradient(to bottom, rgba(241, 95, 37, 0.15), rgba(50, 50, 50, 0.9)); /* Darkened by adjusting rgba values */
+    backdrop-filter: blur(1px); /* Increased from 8px to 12px */
+    opacity: 0.9; /* Increased from 0.3 to 0.4 for slightly stronger effect */
+    z-index: -1;
+}
+
+.features .section-title {
+  text-align: center;
+  font-size: clamp(2.2rem, 4vw, 3rem); /* Balanced scaling */
+  font-weight: 800;
+  margin-bottom: 3rem;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+
+  /* Subtle gradient text for a premium look */
+background: linear-gradient(90deg, #ffb091, #ffffff);
+background-clip: text;              /* Standard property */
+-webkit-background-clip: text;      /* Safari & Chrome */
+-webkit-text-fill-color: transparent;
+color: transparent;                 /* Fallback */
+
+
+  /* Soft glow for depth */
+  text-shadow: 0 2px 8px rgba(241, 95, 37, 0.25);
+
+  /* Gentle fade-in entrance */
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+.features .section-title::after {
+  content: '';
+  display: block;
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #F15F25, #d44f1f);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+  animation: underlineSlide 1s ease-out both;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineSlide {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 90px;
+    opacity: 1;
+  }
+}
+
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+       .feature-card {
+            perspective: 1200px;
+            height: 340px;
+            border-radius: 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+        }
+
+        .feature-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .feature-card:hover .feature-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .feature-card-front,
+        .feature-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card-front {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .feature-card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #f9ddd2, #e6e6e6);
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 65%;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover .feature-image {
+            transform: scale(1.05);
+        }
+
+        .feature-card-front h3 {
+            margin: 0;
+            padding: 0.75rem 0rem;
+            background: #fff;
+            color: #111;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-card-back h3,
+        .feature-card-back p {
+            color: #fff;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #555;
+            padding: 0 1rem 1rem;
+            line-height: 1.4;
+        }
+
+        /* About Section */
+  .about {
+    padding: 3rem 0 6rem; /* reduced top padding (was 6rem 0) */
+    background: 
+        linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+        url('assets/firefly1.png') left 10% top 20% no-repeat,
+        url('assets/firefly2.png') right 20% top 30% no-repeat,
+        url('assets/firefly1.png') left 30% bottom 30% no-repeat,
+        url('assets/firefly2.png') right 40% bottom 20% no-repeat;
+   }
+
+
+/* About section title ONLY */
+.about .section-title {
+  text-align: center;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 3rem;
+  color: #000000; /* black */
+  letter-spacing: 0.03em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+
+  /* reset any gradient text from global styles */
+  background: none !important;
+  background-clip: initial;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  text-shadow: none;
+}
+
+/* keep a subtle brand underline (optional) */
+.about .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #F15F25, #ff804a);
+  border-radius: 2px;
+}
+
+/* Story Timeline */
+.story-timeline {
+    margin: 4rem 0;
+}
+
+.story-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 6rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.story-item.reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+.story-item.reverse .story-image {
+    order: 2;
+}
+
+.story-item.reverse .story-content {
+    order: 1;
+}
+
+.story-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.story-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.story-image:hover {
+    transform: scale(1.02);
+}
+
+.story-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.story-content {
+    position: relative;
+}
+
+.story-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+    position: relative;
+}
+
+.story-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #F15F25, #d44f1f);
+    border-radius: 2px;
+}
+
+.story-content p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    margin: 0;
+}
+
+/* Impact Section */
+.impact-section {
+    margin: 6rem 0;
+    text-align: center;
+}
+
+.impact-section h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: #1a1a1a;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.stat-card {
+    background: #FFFFFF;
+    padding: 2.5rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(241, 95, 37, 0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-color: rgba(241, 95, 37, 0.3);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(241, 95, 37, 0.1), rgba(241, 95, 37, 0.05));
+    border-radius: 50%;
+}
+
+.stat-icon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #F15F25;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Team Highlight */
+.team-highlight {
+    margin: 6rem 0;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 25px;
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.team-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.team-text h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+}
+
+.team-text p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 2rem;
+}
+
+.team-values {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.value-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(241, 95, 37, 0.1);
+    border-radius: 25px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.value-icon {
+    font-size: 1.2rem;
+}
+
+.team-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.team-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+        /* Form Section */
+        .form-section {
+            padding: 6rem 0;
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+
+        .form-section p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+
+        .form {
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            color: #000000;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #F15F25;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #F15F25;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #d44f1f;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+      footer {
+    padding: 2.5rem 0; /* Reduced height */
+    background: url("assets/footer-bg.jpg") no-repeat center center / cover; /* Your image */
+    color: #FFFFFF;
+    text-align: center;
+    border-top: 3px solid #F15F25;
+    position: relative;
+    z-index: 1;
+}
+
+/* Dark overlay for readability */
+footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75); /* Adjust opacity for contrast */
+    z-index: -1;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-bottom: 1.5rem; /* Reduced spacing */
+}
+
+.footer-section h3 {
+    font-size: 1.2rem; /* Slightly smaller */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #F15F25;
+}
+
+.footer-section p,
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem; /* Slightly smaller text */
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #F15F25;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0; /* Reduced margin */
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.08); /* Sleek glassy look */
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.social-link img { width: 24px; height: 24px; object-fit: contain; }
+
+.social-link:hover {
+    background: #F15F25;
+    transform: scale(1.1);
+}
+
+.social-link:focus {
+    outline: 2px solid #F15F25;
+    outline-offset: 2px;
+}
+
+.copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 1.2rem;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links-container {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+                padding: 6rem 0 2rem;
+            }
+
+            .hero-text {
+                order: 2;
+            }
+
+            .robot-showcase {
+                order: 1;
+                min-height: 450px;
+            }
+
+            .robot-display {
+                width: 350px;
+                height: 350px;
+            }
+
+            .robot-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .cta-button {
+                padding: 1rem 2.5rem;
+                font-size: 1rem;
+            }
+
+            .story-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+
+            .story-item.reverse .story-image {
+                order: 1;
+            }
+
+            .story-item.reverse .story-content {
+                order: 2;
+            }
+
+            .story-image img {
+                height: 250px;
+            }
+
+            .story-content h3 {
+                font-size: 1.6rem;
+            }
+
+            .story-content p {
+                font-size: 1rem;
+            }
+
+            .impact-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 2rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .team-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-highlight {
+                padding: 2rem;
+            }
+
+            .team-text h3 {
+                font-size: 1.6rem;
+            }
+
+            .team-text p {
+                font-size: 1rem;
+            }
+
+            .team-values {
+                justify-content: center;
+            }
+
+            .value-item {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .team-image img {
+                height: 300px;
+            }
+
+            .form {
+                padding: 2rem 1rem;
+            }
+
+            .logo-img {
+                height: 25px;
+                max-width: 80px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 0.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .social-links {
+                margin: 2rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .hero-text h1 {
+                font-size: clamp(2.2rem, 7vw, 2.8rem);
+            }
+
+            .hero-text p {
+                font-size: clamp(1rem, 2vw, 1.2rem);
+            }
+
+            .robot-display {
+                width: 280px;
+                height: 280px;
+            }
+
+            .robot-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .cta-button {
+                padding: 0.9rem 2rem;
+                width: 100%;
+                max-width: 260px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .feature-card,
+            .feature-card-inner,
+            .feature-card-front,
+            .feature-card-back {
+                height: 280px;
+            }
+
+            .feature-card h3 {
+                font-size: 1rem;
+                padding: 0.6rem;
+            }
+
+            .feature-card p {
+                font-size: 0.85rem;
+            }
+
+            .form-section h2 {
+                font-size: 2rem;
+            }
+
+            .form-section p {
+                font-size: 1rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                font-size: 0.9rem;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+            }
+
+            .social-link img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .story-content h3 {
+                font-size: 1.4rem;
+            }
+
+            .story-content p {
+                font-size: 0.95rem;
+            }
+
+            .team-text h3 {
+                font-size: 1.4rem;
+            }
+
+            .team-text p {
+                font-size: 0.95rem;
+            }
+
+            .team-values {
+                gap: 1rem;
+            }
+
+            .value-item {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero-text {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero-text h1 {
+                font-size: clamp(1.6rem, 9vw, 2.2rem);
+            }
+
+            .cta-button {
+                min-width: 200px;
+                padding: 0.9rem 1.8rem;
+            }
+
+            .story-item {
+                margin-bottom: 3rem;
+            }
+
+            .story-content h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .impact-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .team-highlight {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<body>
+<!-- Loading Screen (Add this first) -->
+<div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+        <div class="loading-logo">
+            <img src="assets/fireflyio-logo.png" alt="FireflyIO" class="loading-logo-img">
+            <span class="loading-divider">|</span>
+            <img src="assets/xplorebot-logo.png" alt="XploreBot" class="loading-logo-img">
+        </div>
+        <div class="loading-text">
+            <h2>XploreBot</h2>
+            <p>Loading your robotics experience...</p>
+        </div>
+        <div class="loading-animation">
+            <div class="robot-loader"></div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="container">
+        <div class="nav-container">
+            <div class="logo-container">
+                <a href="#" class="logo">
+                    <img src="assets/fireflyio-logo.png" alt="FireflyIO Logo" class="logo-img">
+                </a>
+                <span class="logo-divider">|</span>
+                <a href="#" class="logo">
+                    <img src="assets/xplorebot-logo.png" alt="XploreBot Logo" class="logo-img">
+                </a>
+            </div>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#order">Order Now</a></li>
+                    <li><a href="https://ide.fireflyio.com/">Xplore IDE</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" aria-label="XploreBot Introduction">
+        <div class="hero-bg-elements">
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Discover <span class="highlight">XploreBot</span></h1>
+                    <p>Unlock creativity and innovation with Ghana's leading educational robotics kit, designed for students, educators, and tech enthusiasts to shape the future.</p>
+                    <div class="hero-buttons">
+                        <a href="#order" class="cta-button" aria-label="Order XploreBot Now">🚀 Order Now</a>
+                    </div>
+                </div>
+                <div class="robot-showcase">
+                    <div class="robot-container">
+                        <div class="robot-display">
+                            <div class="robot-image robot1" aria-hidden="true"></div>
+                            <div class="robot-image robot2" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features" aria-label="XploreBot Features">
+        <div class="container">
+            <h2 class="section-title">Why Choose XploreBot?</h2>
+            <div class="features-grid">
+                <div class="feature-card" tabindex="0" role="article" aria-labelledby="feature1-title" aria-describedby="feature1-desc">
+                    <div class="feature-card-inner">
+                        <div class="feature-card-front">
+                            <img src="assets/educational-excellence.png" alt="Glowing book with circuit patterns representing educational curriculum" class="feature-image" loading="lazy">
+                            <h3 id="feature1-title">Educational Excellence</h3>
+                        </div>
+                        <div class="feature-card-back">
+                            <p id="feature1-desc">Designed by educators for educators. Our curriculum covers programming, engineering, and problem-solving, aligned with modern standards.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card" tabindex="0" role="article" aria-labelledby="feature2-title" aria-describedby="feature2-desc">
+                    <div class="feature-card-inner">
+                        <div class="feature-card-front">
+                            <img src="assets/easy-assembly.png" alt="Snapping puzzle piece with robotic arm representing easy assembly" class="feature-image" loading="lazy">
+                            <h3 id="feature2-title">Easy Assembly</h3>
+                        </div>
+                        <div class="feature-card-back">
+                            <p id="feature2-desc">No complex tools needed! Snap-fit components and clear instructions make it accessible for ages 8+.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card" tabindex="0" role="article" aria-labelledby="feature3-title" aria-describedby="feature3-desc">
+                    <div class="feature-card-inner">
+                        <div class="feature-card-front">
+                            <img src="assets/visual-programming.png" alt="Colorful drag-and-drop coding blocks representing visual programming" class="feature-image" loading="lazy">
+                            <h3 id="feature3-title">Visual Programming</h3>
+                        </div>
+                        <div class="feature-card-back">
+                            <p id="feature3-desc">Learn coding with drag-and-drop blocks or advance to text-based programming for all skill levels.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card" tabindex="0" role="article" aria-labelledby="feature4-title" aria-describedby="feature4-desc">
+                    <div class="feature-card-inner">
+                        <div class="feature-card-front">
+                            <img src="assets/competition-ready.png" alt="Trophy with robotic gear representing competition readiness" class="feature-image" loading="lazy">
+                            <h3 id="feature4-title">Competition Ready</h3>
+                        </div>
+                        <div class="feature-card-back">
+                            <p id="feature4-desc">Built for robotics competitions and STEM challenges with international-standard modules.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card" tabindex="0" role="article" aria-labelledby="feature5-title" aria-describedby="feature5-desc">
+                    <div class="feature-card-inner">
+                        <div class="feature-card-front">
+                            <img src="assets/made-in-ghana.png" alt="Ghanaian flag with robotic silhouette representing local innovation" class="feature-image" loading="lazy">
+                            <h3 id="feature5-title">Made in Ghana</h3>
+                        </div>
+                        <div class="feature-card-back">
+                            <p id="feature5-desc">Proudly designed and manufactured in Ghana, supporting local innovation and learning.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card" tabindex="0" role="article" aria-labelledby="feature6-title" aria-describedby="feature6-desc">
+                    <div class="feature-card-inner">
+                        <div class="feature-card-front">
+                            <img src="assets/complete-learning-kit.png" alt="Toolbox with robotics components representing complete learning kit" class="feature-image" loading="lazy">
+                            <h3 id="feature6-title">Complete Learning Kit</h3>
+                        </div>
+                        <div class="feature-card-back">
+                            <p id="feature6-desc">Includes hardware, software, lesson plans, guides, and support for a full robotics experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            
+            <!-- Story Timeline -->
+            <div class="story-timeline">
+                <div class="story-item" data-aos="fade-up">
+                    <div class="story-image">
+                        <img src="assets/story-beginning.jpg" alt="Students struggling with outdated technology in classroom" loading="lazy">
+                    </div>
+                    <div class="story-content">
+                        <h3>The Challenge</h3>
+                        <p>We witnessed talented Ghanaian students struggling with outdated technology and limited access to modern STEM resources. Despite their curiosity and potential, they lacked the tools to explore robotics and programming.</p>
+                    </div>
+                </div>
+                
+                <div class="story-item reverse" data-aos="fade-up">
+                    <div class="story-image">
+                        <img src="assets/story-development.jpg" alt="FireflyIO team working on XploreBot prototypes" loading="lazy">
+                    </div>
+                    <div class="story-content">
+                        <h3>The Solution</h3>
+                        <p>Our team of passionate educators, engineers, and designers came together with one mission: create an affordable, locally-made robotics kit that could compete with international standards while being accessible to African students.</p>
+                    </div>
+                </div>
+                
+                <div class="story-item" data-aos="fade-up">
+                    <div class="story-image">
+                        <img src="assets/story-testing.jpg" alt="Students excitedly building and programming XploreBot" loading="lazy">
+                    </div>
+                    <div class="story-content">
+                        <h3>The Testing</h3>
+                        <p>Months of iterative design and testing with real students in real classrooms. Every component was refined based on feedback, ensuring XploreBot truly serves the needs of young innovators.</p>
+                    </div>
+                </div>
+                
+                <div class="story-item reverse" data-aos="fade-up">
+                    <div class="story-image">
+                        <img src="assets/story-impact.jpg" alt="Diverse group of students celebrating with their completed robots" loading="lazy">
+                    </div>
+                    <div class="story-content">
+                        <h3>The Impact</h3>
+                        <p>Today, XploreBot is ready to transform STEM education across Ghana and beyond. Join us in empowering the next generation of African innovators and problem-solvers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="impact-section">
+                <h3>Our Journey So Far</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="assets/student.png" alt="Students icon">
+                        </div>
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Students Tested</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="assets/school.png" alt="Schools icon">
+                        </div>
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Schools using XploreBot</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="assets/satisfaction.png" alt="Satisfaction icon">
+                        </div>
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <img src="assets/support.png" alt="Support icon">
+                        </div>
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Highlight -->
+            <div class="team-highlight">
+                <div class="team-content">
+                    <div class="team-text">
+                        <h3>Meet the Minds Behind XploreBot</h3>
+                        <p>Our diverse team combines decades of experience in education, engineering, and design. We're united by our passion for making quality STEM education accessible to every child in Africa.</p>
+                        <div class="team-values">
+                            <div class="value-item">
+                                <span class="value-icon">🎓</span>
+                                <span>Education First</span>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-icon">🏭</span>
+                                <span>Made in Ghana</span>
+                            </div>
+                            <div class="value-item">
+                                <span class="value-icon">🚀</span>
+                                <span>Innovation Driven</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-image">
+                        <img src="assets/fireflyio-team.jpg" alt="The FireflyIO team working together on XploreBot development" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+  <section class="form-section" id="order">
+  <div class="container">
+    <div class="form-container">
+      <h2>Place Your Order</h2>
+      <p>Secure your XploreBot kit today! Fill out the form below and our team will contact you with payment and delivery details.</p>
+      
+      <div class="form">
+        <div class="success-message" id="successMessage">
+          Thank you for your order request! Our team will reach out shortly to confirm your details and arrange delivery.
+        </div>
+        
+        <form id="orderForm">
+          <!-- same fields as before -->
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="organization">School/Organization</label>
+            <input type="text" id="organization" name="organization">
+          </div>
+          
+          <div class="form-group">
+            <label for="role">Your Role *</label>
+            <select id="role" name="role" required>
+              <option value="">Select your role</option>
+              <option value="teacher">Teacher/Educator</option>
+              <option value="parent">Parent</option>
+              <option value="student">Student</option>
+              <option value="administrator">School Administrator</option>
+              <option value="hobbyist">Tech Enthusiast/Hobbyist</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="quantity">How many kits would you like to order? *</label>
+            <select id="quantity" name="quantity" required>
+              <option value="">Select quantity</option>
+              <option value="1">1 kit</option>
+              <option value="2-5">2-5 kits</option>
+              <option value="6-10">6-10 kits</option>
+              <option value="11-20">11-20 kits</option>
+              <option value="21+">21+ kits</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="timeline">When do you need delivery?</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select timeline</option>
+              <option value="immediately">As soon as available</option>
+              <option value="1-2months">Within 1-2 months</option>
+              <option value="3-6months">Within 3-6 months</option>
+              <option value="flexible">Timeline is flexible</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Additional Notes (Optional)</label>
+            <textarea id="message" name="message" placeholder="Any special delivery instructions or questions?"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Submit Order Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About FireflyIO</h3>
+                    <p>Empowering the next generation of innovators through accessible robotics education and cutting-edge technology solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#features">Features</a></p>
+                    <p><a href="#about">About Us</a></p>
+                    <p><a href="#order">Order Now</a></p>
+                    <p><a href="#support">Support</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Email: <a href="mailto:info@getxplorebot.com">info@getxplorebot.com</a></p>
+                    <p>Phone: +233 54 452 5401</p>
+                    <p>Location: Accra, Ghana</p>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Visit our Youtube Channel">
+                    <img src="assets/youtube.png" alt="Youtube Icon">
+                </a>
+                <a href="https://www.tiktok.com/@getxplorebot" class="social-link" aria-label="Visit our Tiktok page">
+                    <img src="assets/tiktok.png" alt="Tiktok Icon">
+                </a>
+                <a href="https://www.instagram.com/getxplorebot/" class="social-link" aria-label="Visit our Instagram page">
+                    <img src="assets/instagram.png" alt="Instagram Icon">
+                </a>
+                <a href="https://www.linkedin.com/company/getxplorebot" class="social-link" aria-label="Visit our LinkedIn page">
+                    <img src="assets/linkedin.png" alt="LinkedIn Icon">
+                </a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FireflyIO. All rights reserved. Designed and developed in Ghana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// Loading Screen Management
+document.addEventListener('DOMContentLoaded', function() {
+    // Add loading class to body
+    document.body.classList.add('loading');
+    
+    // Preload ALL images
+    const allImages = [
+        // Hero section
+        'assets/robot1.png',
+        'assets/robot2.png',
+        'assets/fireflyio-logo.png',
+        'assets/xplorebot-logo.png',
+        
+        // Features section
+        'assets/features-bg.jpg',
+        'assets/educational-excellence.png',
+        'assets/easy-assembly.png',
+        'assets/visual-programming.png',
+        'assets/competition-ready.png',
+        'assets/made-in-ghana.png',
+        'assets/complete-learning-kit.png',
+        
+        // About/Story section
+        'assets/story-beginning.jpg',
+        'assets/story-development.jpg',
+        'assets/story-testing.jpg',
+        'assets/story-impact.jpg',
+        'assets/fireflyio-team.jpg',
+        
+        // Stats icons
+        'assets/student.png',
+        'assets/school.png',
+        'assets/satisfaction.png',
+        'assets/support.png',
+        
+        // Footer/Social
+        'assets/youtube.png',
+        'assets/tiktok.png',
+        'assets/instagram.png',
+        'assets/linkedin.png',
+        'assets/footer-bg.jpg',
+        
+        // Background decorative
+        'assets/firefly1.png',
+        'assets/firefly2.png'
+    ];
+    
+    let imagesLoaded = 0;
+    const totalImages = allImages.length;
+    
+    // Function to update progress bar based on loaded images
+    function updateProgress() {
+        const progressFill = document.querySelector('.progress-fill');
+        const percentage = (imagesLoaded / totalImages) * 100;
+        if (progressFill) {
+            progressFill.style.width = percentage + '%';
+        }
+    }
+    
+    // Function to check if loading is complete
+    function checkLoadingComplete() {
+        // Wait for either all images loaded OR minimum 3 seconds
+        if (imagesLoaded >= totalImages || Date.now() - startTime >= 3000) {
+            hideLoadingScreen();
+        }
+    }
+    
+    // Preload images
+    allImages.forEach(src => {
+        const img = new Image();
+        img.onload = () => {
+            imagesLoaded++;
+            updateProgress();
+            checkLoadingComplete();
+        };
+        img.onerror = () => {
+            imagesLoaded++;
+            updateProgress();
+            checkLoadingComplete();
+        };
+        img.src = src;
+    });
+    
+    const startTime = Date.now();
+    
+    // Minimum loading time of 5 seconds
+    setTimeout(checkLoadingComplete, 5000);
+    
+    function hideLoadingScreen() {
+        const loadingScreen = document.getElementById('loadingScreen');
+        const body = document.body;
+        
+        // Fade out loading screen
+        loadingScreen.classList.add('fade-out');
+        
+        // Remove loading class from body
+        body.classList.remove('loading');
+        
+        // Remove loading screen after animation
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 800);
+        
+        // Initialize other animations
+        initializeWebsite();
+    }
+    
+    function initializeWebsite() {
+        // Start robot switching animation
+        startRobotAnimation();
+        
+        // Initialize scroll animations
+        animateOnScroll();
+        
+        // Add event listeners
+        addEventListeners();
+    }
+});
+
+// Robot transition functionality
+let robotIndex = 0;
+const robotContainer = document.querySelector('.robot-container');
+
+function startRobotAnimation() {
+    if (robotContainer) {
+        setInterval(switchRobots, 4000);
+    }
+}
+
+function switchRobots() {
+    robotContainer.classList.toggle('switched');
+    robotIndex = robotIndex === 0 ? 1 : 0;
+}
+
+// Scroll animations for story timeline
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function isElementPartiallyInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
+    );
+}
+
+// Optimized scroll handler with throttling
+let ticking = false;
+
+function handleScroll() {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            animateOnScroll();
+            updateNavbar();
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+
+function animateOnScroll() {
+    const storyItems = document.querySelectorAll('.story-item');
+    
+    storyItems.forEach(item => {
+        if (isElementPartiallyInViewport(item)) {
+            item.classList.add('visible');
+        }
+    });
+}
+
+function updateNavbar() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+}
+
+function addEventListeners() {
+    // Throttled scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Form submission handling
+    const orderForm = document.getElementById('orderForm');
+    if (orderForm) {
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+    }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+</script>
+</body>
+</html>
