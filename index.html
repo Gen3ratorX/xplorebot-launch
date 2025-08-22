@@ -10,7 +10,14 @@
     <link rel="preload" href="assets/robot1.png" as="image">
     <link rel="preload" href="assets/fireflyio-logo.png" as="image">
     <link rel="preload" href="assets/xplorebot-logo.png" as="image">
-    
+    <link rel="preload" href="assets/4wdfront.jpg" as="image">
+    <link rel="preload" href="assets/4wdside.jpg" as="image">
+        <link rel="preload" href="assets/2wdfront.jpg" as="image">
+        <link rel="preload" href="assets/2wdside.jpg" as="image">
+        <link rel="preload" href="assets/quadfront.jpg" as="image">
+        <link rel="preload" href="assets/quadside.jpg" as="image">
+        <link rel="preload" href="assets/tankfront.jpg" as="image">
+        <link rel="preload" href="assets/tankside.jpg" as="image">
     <style>
         * {
             margin: 0;
@@ -1758,22 +1765,18 @@
         <div class="variant-selector">
             <div class="variant-tabs">
                 <button class="variant-tab active" data-variant="4wd">
-                    <span class="tab-icon">🚗</span>
                     <span class="tab-name">4WD Pro</span>
                     <span class="tab-badge">Most Popular</span>
                 </button>
                 <button class="variant-tab" data-variant="2wd">
-                    <span class="tab-icon">🏎️</span>
                     <span class="tab-name">2WD Swift</span>
                     <span class="tab-badge">Speed Focus</span>
                 </button>
                 <button class="variant-tab" data-variant="quadbot">
-                    <span class="tab-icon">🕷️</span>
                     <span class="tab-name">QuadBot</span>
                     <span class="tab-badge">Advanced</span>
                 </button>
                 <button class="variant-tab" data-variant="tank">
-                    <span class="tab-icon">🛡️</span>
                     <span class="tab-name">Tank</span>
                     <span class="tab-badge">Rugged</span>
                 </button>
@@ -1832,7 +1835,7 @@
                 <!-- 4WD Info -->
                 <div class="variant-info active" data-variant="4wd">
                     <h3>4WD Pro Explorer</h3>
-                    <div class="price-badge">Starting from $249</div>
+                    <div class="price-badge">Starting from GHS 2,500</div>
                     <p class="product-description">
                         The ultimate all-terrain learning robot with four-wheel drive capability. Perfect for outdoor adventures, complex navigation challenges, and competitive robotics.
                     </p>
@@ -1851,7 +1854,7 @@
                 <!-- 2WD Info -->
                 <div class="variant-info" data-variant="2wd" style="display: none;">
                     <h3>2WD Swift Racer</h3>
-                    <div class="price-badge">Starting from $189</div>
+                    <div class="price-badge">Starting from GHS 2,000</div>
                     <p class="product-description">
                         Streamlined for speed and agility. The perfect entry point for robotics with focus on programming, sensors, and fast-paced challenges.
                     </p>
@@ -1870,7 +1873,7 @@
                 <!-- QuadBot Info -->
                 <div class="variant-info" data-variant="quadbot" style="display: none;">
                     <h3>QuadBot Walker</h3>
-                    <div class="price-badge">Starting from $329</div>
+                    <div class="price-badge">Starting from GHS 3,000</div>
                     <p class="product-description">
                         Advanced four-legged robot with sophisticated walking algorithms. Explore biomimetic robotics and complex movement patterns.
                     </p>
@@ -1889,7 +1892,7 @@
                 <!-- Tank Info -->
                 <div class="variant-info" data-variant="tank" style="display: none;">
                     <h3>Tank Fortress</h3>
-                    <div class="price-badge">Starting from $219</div>
+                    <div class="price-badge">Starting from GHS 2,500</div>
                     <p class="product-description">
                         Rugged tracked vehicle built to handle the toughest environments. Industrial-grade sensors and extreme durability for challenging missions.
                     </p>
@@ -2069,14 +2072,14 @@
                 <div class="stat-icon">
                     <img src="assets/student.png" alt="Students">
                 </div>
-                <span class="stat-number">500+</span>
+                <span class="stat-number">10000+</span>
                 <span class="stat-label">Students Tested</span>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">
                     <img src="assets/school.png" alt="Schools">
                 </div>
-                <span class="stat-number">50+</span>
+                <span class="stat-number">200+</span>
                 <span class="stat-label">Schools using XploreBot</span>
             </div>
             <div class="stat-card">
@@ -2233,7 +2236,15 @@ document.addEventListener('DOMContentLoaded', function() {
         'assets/robot1.png',
         'assets/robot2.png',
         'assets/fireflyio-logo.png',
-        'assets/xplorebot-logo.png'
+        'assets/xplorebot-logo.png',
+        'assets/4wdfront.jpg',
+        'assets/4wdside.jpg',
+        'assets/2wdfront.jpg',
+        'assets/2wdside.jpg',
+        'assets/quadfront.jpg',
+        'assets/quadside.jpg',
+        'assets/tankfront.jpg',
+        'assets/tankside.jpg'
     ];
     
     const nonCriticalImages = [
