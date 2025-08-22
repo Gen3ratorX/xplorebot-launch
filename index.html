@@ -2069,7 +2069,7 @@
                     Thank you for your order request! Our team will reach out shortly to confirm your details and arrange delivery.
                 </div>
                 
-                <form id="orderForm">
+                <form id="orderForm" action="https://formspree.io/f/xblknajo" method="POST">
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -2077,7 +2077,7 @@
                     
                     <div class="form-group">
                         <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="_replyto" required>
                     </div>
                     
                     <div class="form-group">
@@ -2100,6 +2100,17 @@
                             <option value="administrator">School Administrator</option>
                             <option value="hobbyist">Tech Enthusiast/Hobbyist</option>
                             <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kitType">XploreBot Kit Type *</label>
+                        <select id="kitType" name="kitType" required>
+                            <option value="">Select kit type</option>
+                            <option value="4WD Pro">4WD Pro</option>
+                            <option value="2WD Swift">2WD Swift</option>
+                            <option value="QuadBot">QuadBot</option>
+                            <option value="Tank">Tank</option>
                         </select>
                     </div>
                     
@@ -2131,6 +2142,11 @@
                         <textarea id="message" name="message" placeholder="Any special delivery instructions or questions?"></textarea>
                     </div>
                     
+                    <!-- Formspree-specific hidden fields -->
+                    <input type="hidden" name="_subject" value="New XploreBot Order Request">
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html">
+                    <input type="text" name="_gotcha" style="display:none;" aria-hidden="true">
+                    
                     <button type="submit" class="submit-btn">Submit Order Request</button>
                 </form>
             </div>
@@ -2143,8 +2159,8 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>About FireflyIO</h3>
-                <p>Empowering the next generation of innovators through accessible robotics education and cutting-edge technology solutions.</p>
+                <h3>About XploreBot</h3>
+                <p>XploreBot: Empowering Ghana’s innovators with affordable, cutting-edge robotics education.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -2549,30 +2565,57 @@ function initializeProductCarousel() {
         showcaseObserver.observe(showcaseSection);
     }
 }
-// Form handling
+
+// Form handling with Formspree integration
 function initializeFormHandling() {
     const orderForm = document.getElementById('orderForm');
     const successMessage = document.getElementById('successMessage');
     
     if (orderForm) {
         orderForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default form submission for client-side feedback
             
-            // Show success message
+            // Collect form data for validation
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                organization: document.getElementById('organization').value,
+                role: document.getElementById('role').value,
+                kitType: document.getElementById('kitType').value,
+                quantity: document.getElementById('quantity').value,
+                timeline: document.getElementById('timeline').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Client-side validation for kitType
+            const validKitTypes = ['4WD Pro', '2WD Swift', 'QuadBot', 'Tank'];
+            if (!validKitTypes.includes(formData.kitType)) {
+                alert('Please select a valid kit type');
+                return;
+            }
+            
+            // Basic validation for required fields
+            if (!formData.name || !formData.email || !formData.phone || !formData.role || !formData.quantity) {
+                alert('Please fill out all required fields.');
+                return;
+            }
+            
+            // Show success message and reset form
             successMessage.style.display = 'block';
             successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-            // Reset form
-            this.reset();
-            
-            // Hide success message after 5 seconds
+            // Allow Formspree to process the submission in the background
             setTimeout(() => {
                 successMessage.style.display = 'none';
+                orderForm.reset(); // Reset form after delay
             }, 5000);
+            
+            // Optionally submit the form to Formspree after validation
+            orderForm.submit(); // This triggers the Formspree action
         });
     }
 }
-
 // Smooth scrolling
 function initializeSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
