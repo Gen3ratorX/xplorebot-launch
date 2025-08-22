@@ -250,167 +250,127 @@
             transition: 0.3s;
         }
 
-        /* Hero Section - Enhanced */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(145deg, #f5f7fa 0%, rgba(241, 95, 37, 0.08) 50%, #ffffff 100%);
-        }
+  /* Hero Section - Enhanced with Video Background */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-bg-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(0.7); /* Adjusts video brightness for better text readability */
+}
 
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(241, 95, 37, 0.15), rgba(241, 95, 37, 0.05));
-            will-change: transform;
-        }
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    padding: 6rem 0 2rem;
+}
 
-        .bg-circle:nth-child(1) {
-            width: 200px;
-            height: 200px;
-            top: 15%;
-            right: 15%;
-            animation: floatCircles 15s ease-in-out infinite;
-        }
+.hero-text {
+    max-width: 650px;
+}
 
-        .bg-circle:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            bottom: 25%;
-            left: 15%;
-            animation: floatCircles 18s ease-in-out infinite -5s;
-        }
+.hero-text h1 {
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff, #F15F25); /* Adjusted for better contrast on video */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fadeInUp 1s ease-out;
+    line-height: 1.15;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Added for better readability */
+}
 
-        .bg-circle:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            top: 65%;
-            right: 25%;
-            animation: floatCircles 20s ease-in-out infinite -10s;
-        }
+.hero-text .highlight {
+    color: #F15F25;
+    position: relative;
+}
 
-        @keyframes floatCircles {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0.4;
-            }
-            50% {
-                transform: translate(15px, -30px) rotate(180deg);
-                opacity: 0.6;
-            }
-        }
+.hero-text .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #F15F25, #d44f1f);
+    animation: underlineExpand 1s ease-out 0.5s both;
+}
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            position: relative;
-            z-index: 10;
-            padding: 6rem 0 2rem;
-        }
+@keyframes underlineExpand {
+    from { width: 0; }
+    to { width: 100%; }
+}
 
-        .hero-text {
-            max-width: 650px;
-        }
+.hero-text p {
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    margin-bottom: 2.5rem;
+    color: #ffffff; /* Changed to white for better contrast */
+    line-height: 1.7;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Added for readability */
+}
 
-        .hero-text h1 {
-            font-size: clamp(2.5rem, 5vw, 4.2rem);
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #1a1a1a, #F15F25);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: fadeInUp 1s ease-out;
-            line-height: 1.15;
-        }
+.hero-buttons {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
 
-        .hero-text .highlight {
-            color: #F15F25;
-            position: relative;
-        }
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2.8rem;
+    background: linear-gradient(135deg, #F15F25, #d44f1f);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(241, 95, 37, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-out 0.5s both;
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero-text .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #F15F25, #d44f1f);
-            animation: underlineExpand 1s ease-out 0.5s both;
-        }
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
 
-        @keyframes underlineExpand {
-            from { width: 0; }
-            to { width: 100%; }
-        }
+.cta-button:hover::before {
+    left: 100%;
+}
 
-        .hero-text p {
-            font-size: clamp(1.1rem, 2.2vw, 1.3rem);
-            margin-bottom: 2.5rem;
-            color: #444;
-            line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.2rem 2.8rem;
-            background: linear-gradient(135deg, #F15F25, #d44f1f);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 25px rgba(241, 95, 37, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease-out 0.5s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(241, 95, 37, 0.4), 0 6px 18px rgba(0, 0, 0, 0.15);
-        }
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(241, 95, 37, 0.4), 0 6px 18px rgba(0, 0, 0, 0.15);
+}
 
         /* Robot Showcase - Enhanced */
         .robot-showcase {
@@ -527,14 +487,11 @@
       
  /* Product Showcase Section - Ultra Modern */
 .product-showcase {
-    padding: 6rem 0;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(241, 95, 37, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(241, 95, 37, 0.05) 0%, transparent 50%),
-        linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
+    padding: 4rem 0;
+    background: #f0f0f0; /* White background for clean, modern look */
     position: relative;
     overflow: hidden;
-    color: #ffffff;
+    color: #1a1a1a; /* Dark text for contrast */
 }
 
 .product-showcase::before {
@@ -548,6 +505,7 @@
         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(241,95,37,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     animation: gridMove 20s linear infinite;
     z-index: 1;
+    opacity: 0.3; /* Subtle grid for texture */
 }
 
 @keyframes gridMove {
@@ -564,8 +522,8 @@
     text-align: center;
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 900;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #ffffff, #F15F25, #ffffff);
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #1a1a1a, #F15F25); 
     background-size: 200% 200%;
     background-clip: text;
     -webkit-background-clip: text;
@@ -581,8 +539,8 @@
 .product-showcase .section-subtitle {
     text-align: center;
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 3rem;
+    color: #444; /* Softer gray for readability */
+    margin-bottom: 1.5rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -590,7 +548,7 @@
 
 /* Variant Selector Tabs */
 .variant-selector {
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 
 .variant-tabs {
@@ -602,9 +560,9 @@
 }
 
 .variant-tab {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(241, 95, 37, 0.1));
+    background: rgba(241, 95, 37, 0.05); /* Light orange tint */
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(241, 95, 37, 0.2);
     border-radius: 15px;
     padding: 1rem 1.5rem;
     cursor: pointer;
@@ -622,7 +580,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(241, 95, 37, 0.2), transparent);
     transition: left 0.6s ease;
 }
 
@@ -632,12 +590,12 @@
 
 .variant-tab:hover {
     transform: translateY(-5px);
-    border-color: rgba(241, 95, 37, 0.5);
+    border-color: #F15F25;
     box-shadow: 0 10px 30px rgba(241, 95, 37, 0.2);
 }
 
 .variant-tab.active {
-    background: linear-gradient(135deg, rgba(241, 95, 37, 0.2), rgba(255, 255, 255, 0.1));
+    background: rgba(241, 95, 37, 0.1);
     border-color: #F15F25;
     transform: translateY(-3px);
     box-shadow: 0 15px 40px rgba(241, 95, 37, 0.3);
@@ -653,14 +611,14 @@
     display: block;
     font-weight: 700;
     font-size: 1.1rem;
-    color: #ffffff;
+    color: #1a1a1a; /* Dark text for white background */
     margin-bottom: 0.3rem;
 }
 
 .tab-badge {
     display: block;
     font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #666; /* Gray for subtle contrast */
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -674,9 +632,9 @@
 .main-product-display {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .product-carousel {
@@ -684,13 +642,13 @@
     height: 500px;
     border-radius: 20px;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(241, 95, 37, 0.1));
+    background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(241, 95, 37, 0.2);
     box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 100px rgba(241, 95, 37, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 100px rgba(241, 95, 37, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .variant-slides {
@@ -741,7 +699,7 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(241, 95, 37, 0.3); /* Adjusted for white background */
     cursor: pointer;
     transition: all 0.3s ease;
     border: 2px solid transparent;
@@ -750,7 +708,7 @@
 .indicator.active {
     background: #F15F25;
     transform: scale(1.2);
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(241, 95, 37, 0.5);
 }
 
 /* Enhanced Product Info Panel */
@@ -762,7 +720,7 @@
     font-size: 2.5rem;
     font-weight: 900;
     margin-bottom: 0.5rem;
-    background: linear-gradient(45deg, #ffffff, #F15F25);
+    background: linear-gradient(45deg, #1a1a1a, #F15F25); /* Matches hero section */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -783,7 +741,7 @@
 .product-description {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.9);
+    color: #444; /* Gray for readability */
     margin-bottom: 2rem;
 }
 
@@ -798,7 +756,7 @@
     align-items: center;
     margin-bottom: 1rem;
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #1a1a1a; /* Dark text for white background */
     opacity: 0;
     transform: translateX(-20px);
     animation: slideInLeft 0.6s ease forwards;
@@ -830,7 +788,7 @@
 }
 
 .best-for {
-    background: rgba(241, 95, 37, 0.1);
+    background: rgba(241, 95, 37, 0.05); /* Light orange tint */
     border-left: 3px solid #F15F25;
     padding: 1rem;
     border-radius: 8px;
@@ -845,7 +803,7 @@
 }
 
 .use-cases {
-    color: rgba(255, 255, 255, 0.9);
+    color: #444; /* Gray for readability */
     font-size: 0.95rem;
 }
 
@@ -881,7 +839,7 @@
 
 /* Customization Preview Section */
 .customization-preview {
-    background: linear-gradient(135deg, rgba(241, 95, 37, 0.1), rgba(255, 255, 255, 0.05));
+    background: rgba(241, 95, 37, 0.05); /* Light orange tint */
     border-radius: 20px;
     padding: 3rem;
     margin: 4rem 0;
@@ -915,7 +873,7 @@
 .preview-content h3 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, #ffffff, #F15F25, #ffffff);
+    background: linear-gradient(45deg, #1a1a1a, #F15F25); /* Matches hero section */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -923,7 +881,7 @@
 
 .preview-content p {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #444; /* Gray for readability */
     margin-bottom: 2rem;
     max-width: 600px;
     margin-left: auto;
@@ -942,7 +900,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(241, 95, 37, 0.05); /* Light orange tint */
     padding: 0.8rem 1.5rem;
     border-radius: 25px;
     backdrop-filter: blur(10px);
@@ -953,7 +911,7 @@
 }
 
 .notify-btn {
-    background: linear-gradient(135deg, rgba(241, 95, 37, 0.8), rgba(255, 123, 71, 0.8));
+    background: linear-gradient(135deg, #F15F25, #ff7b47);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -1722,11 +1680,10 @@
 
 <!-- Hero Section -->
 <section class="hero" id="home">
-    <div class="hero-bg-elements">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-    </div>
+    <video class="hero-video-bg" autoplay loop muted playsinline preload="auto">
+        <source src="assets/header.webm" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
     <div class="container">
         <div class="hero-content">
             <div class="hero-text">
@@ -1747,7 +1704,7 @@
         </div>
     </div>
 </section>
-<!-- Product Showcase Section -->
+
 <!-- Product Showcase Section -->
 <section class="product-showcase" id="products">
     <div class="floating-elements">
@@ -1834,7 +1791,7 @@
                 <!-- 4WD Info -->
                 <div class="variant-info active" data-variant="4wd">
                     <h3>4WD Pro Explorer</h3>
-                    <div class="price-badge">Starting from GHS 2,500</div>
+                    <div class="price-badge">Starting from GHS 2,000</div>
                     <p class="product-description">
                         The ultimate all-terrain learning robot with four-wheel drive capability. Perfect for outdoor adventures, complex navigation challenges, and competitive robotics.
                     </p>
@@ -1853,7 +1810,7 @@
                 <!-- 2WD Info -->
                 <div class="variant-info" data-variant="2wd" style="display: none;">
                     <h3>2WD Swift Racer</h3>
-                    <div class="price-badge">Starting from GHS 2,000</div>
+                    <div class="price-badge">Starting from GHS 1,800</div>
                     <p class="product-description">
                         Streamlined for speed and agility. The perfect entry point for robotics with focus on programming, sensors, and fast-paced challenges.
                     </p>
@@ -1937,6 +1894,7 @@
         </div>
     </div>
 </section>
+
 
 <!-- Features Section -->
 <section class="features" id="features">
@@ -2234,6 +2192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Optimized image and video preloading with better error handling
     const criticalAssets = [
         'assets/intro.webm',
+        'assets/header.webm',
         'assets/robot1.webp',
         'assets/robot2.webp',
         'assets/fireflyio-logo.webp',
