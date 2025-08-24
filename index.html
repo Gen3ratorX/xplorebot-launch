@@ -1115,9 +1115,9 @@ nav.scrolled {
 }
 
         /* Features Section - Enhanced */
-        .features {
+       .features {
             padding: 4rem 0;
-            background: url('assets/features-bg.webp') center/cover no-repeat;
+            background: url('assets/features-bg.webp') center/cover no-repeat fixed;
             position: relative;
             z-index: 1;
         }
@@ -1132,6 +1132,7 @@ nav.scrolled {
             background: linear-gradient(145deg, rgba(0, 0, 0, 0.7), rgba(241, 95, 37, 0.1));
             backdrop-filter: blur(2px);
             z-index: -1;
+            pointer-events: none;
         }
 
         .features .section-title {
